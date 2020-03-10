@@ -21,7 +21,8 @@ while True:
         print('7: Create a workshop')
         print('8: List all workshops')
         print('9: Exit')
-        menu_num = int(input('Please enter the number for one of the above menu options (e.g. \'1\')\n'))
+        print('=====================================================================')
+        menu_num = int(input('\nPlease enter the number for the above menu options (e.g. \'1\')\n'))
 
         if menu_num == 1:
             # Creating a student with first name and last name
@@ -46,7 +47,8 @@ while True:
         elif menu_num == 3:
             # List students skills
             while True:
-                student_id = input('Please enter the student_id for the student you wish to display skills or enter \'exit\' to exit to menu.\n')
+                student_id = input('Please enter the student_id for the student you wish to display skills or enter ' +
+                                   '\'exit\' to exit to menu.\n')
                 if ('exit' in student_id):
                     break
                 else:
@@ -54,8 +56,10 @@ while True:
                         print('No skills available.')
                         input('\nPress enter/return to continue to the menu.\n')
                     else:
-                        print('Skills of', student_list[int(student_id)-1].f_name, student_list[int(student_id)-1].l_name)
-                        [print('-', student_list[int(student_id)-1].skills[i]) for i in range(len(student_list[int(student_id)-1].skills))]
+                        print('Skills of', student_list[int(student_id)-1].f_name,
+                              student_list[int(student_id)-1].l_name)
+                        [print('-', student_list[int(student_id)-1].skills[i]) for i in
+                         range(len(student_list[int(student_id)-1].skills))]
                         input('\nPress enter/return to continue to the menu.\n')
 
         elif menu_num == 4:
