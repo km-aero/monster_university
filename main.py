@@ -1,37 +1,118 @@
-from monster_class import *
 from student_class import *
 from teacher_class import *
 from workshop_class import *
-from functions import *
 
-# Creating a student with first name and last name
-student1 = Student('Bob', 'Mate', 1)
-student2 = Student('Liv', 'Tree', 2)
-student3 = Student('Dave', 'Ham', 3)
+# Initialise lists
+student_list = []
+teacher_list = []
+workshop_list = []
+skill_list = []
 
-student_list = [student1, student2, student3]
+# Administrators Program
+while True:
+    try:
+        print('========================Welcome Administrator========================')
+        print('1: Create a student')
+        print('2: Add skills to student')
+        print('3: List all skills of a student')
+        print('4: List all students')
+        print('5: Create a teacher')
+        print('6: List all teachers')
+        print('7: Create a workshop')
+        print('8: List all workshops')
+        print('9: Exit')
+        menu_num = int(input('Please enter the number for one of the above menu options (e.g. \'1\')\n'))
 
-[print(i.f_name, i.l_name) for i in student_list]
+        if menu_num == 1:
+            # Creating a student with first name and last name
+            while True:
+                f_name = input('Please enter the students first name or write \'exit\' to exit.\n')
+                if ('exit' in f_name):
+                    break
+                else:
+                    l_name = input('Please enter the students last name.\n')
+                    i = len(student_list) + 1
+                    student_list.append(Student(f_name, l_name, i))
 
-# Create teachers
-teacher1 = Teacher('Sir', 'Rob', 1)
-teacher2 = Teacher('Sir', 'Dirk', 2)
-teacher3 = Teacher('Sir', 'Mike', 3)
+        elif menu_num == 2:
+            while True:
+                skill = input('Please enter the skill you want to add or enter \'exit\' to exit to menu.\n')
+                if ('exit' in skill):
+                    break
+                else:
+                    student_id = input('Please enter the student_id for the student you wish to add skills to.\n')
+                    student_list[int(student_id)-1].add_skills(skill)
 
-teacher_list = [teacher1, teacher2, teacher3]
+        elif menu_num == 3:
+            # List students skills
+            while True:
+                student_id = input('Please enter the student_id for the student you wish to display skills or enter \'exit\' to exit to menu.\n')
+                if ('exit' in student_id):
+                    break
+                else:
+                    if student_list[int(student_id)-1].skills == []:
+                        print('No skills available.')
+                        input('\nPress enter/return to continue to the menu.\n')
+                    else:
+                        print('Skills of', student_list[int(student_id)-1].f_name, student_list[int(student_id)-1].l_name)
+                        [print('-', student_list[int(student_id)-1].skills[i]) for i in range(len(student_list[int(student_id)-1].skills))]
+                        input('\nPress enter/return to continue to the menu.\n')
 
-[print(i.f_name, i.l_name, i.staff_id) for i in teacher_list]
+        elif menu_num == 4:
+            # List all students
+            print('First Name |', 'Last Name |', 'Student ID')
+            [print(i.f_name, '|', i.l_name, '|', i.student_id) for i in student_list]
+            input('\nPress enter/return to continue to the menu.\n')
 
-# Create workshop
-workshop1 = monster_workshop('Scare', 'Sir Rob')
-workshop2 = monster_workshop('Math', 'Sir Dirk')
-workshop3 = monster_workshop('Geo', 'Sir Mike')
+        elif menu_num == 5:
+            # Create teachers
+            while True:
+                f_name = input('Please enter the teachers first name or write \'exit\' to exit.\n')
+                if ('exit' in f_name):
+                    break
+                else:
+                    l_name = input('Please enter the teachers last name.\n')
+                    i = len(teacher_list) + 1
+                    teacher_list.append(Teacher(f_name, l_name, i))
 
-workshop_list = [workshop1, workshop2, workshop3]
+        elif menu_num == 6:
+            # List all teachers
+            print('First Name |', 'Last Name |', 'Staff ID')
+            [print(i.f_name, '|', i.l_name, '|', i.staff_id) for i in teacher_list]
+            input('\nPress enter/return to continue to the menu.\n')
 
-[print(i.subject, i.teacher) for i in workshop_list]
+        elif menu_num == 7:
+            # Create workshop
+            while True:
+                subject = input('Please enter the subject name or write \'exit\' to exit.\n')
+                if ('exit' in subject):
+                    break
+                else:
+                    staff_id = input('Please enter the teacher\'s ID number.\n')
+                    workshop_list.append(MonsterWorkshop(subject, staff_id))
 
-# Add skills to student
-skill_list = ['Roar', 'Wolf']
-add_skills(student2, skill_list)
-print(student2.skills)
+        elif menu_num == 8:
+            # List all workshops
+            print('First Name |', 'Staff ID')
+            [print(i.f_name, '|', i.staff_id) for i in workshop_list]
+            input('\nPress enter/return to continue to the menu.\n')
+
+        elif menu_num == 9:
+            print('Have a good day!')
+            break
+
+        else:
+            print('Please enter a number in the menu.')
+            input('\nPress enter/return to continue to the menu.\n')
+
+    except ValueError:
+        print('Please enter a number in the menu.')
+        input('\nPress enter/return to continue to the menu.\n')
+
+    except TypeError:
+        print('Please enter a number in the menu.')
+        input('\nPress enter/return to continue to the menu.\n')
+
+    except IndexError:
+        print('Error: Please enter a number\nYou will need to start from the main menu.')
+        input('\nPress enter/return to continue to the menu.\n')

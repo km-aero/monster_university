@@ -1,5 +1,7 @@
-class monster_workshop():
-    def __init__(self, subject, teacher):
+class MonsterWorkshop:
+    def __init__(self, subject, staff_id):
         self.subject = subject
         self.list_of_attendees = []
-        self.teacher = teacher
+        self.staff_id = staff_id
+
+
