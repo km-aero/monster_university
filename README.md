@@ -2,10 +2,12 @@
 
 ## Description
 
-Github contains an administrator's system to manipulate student, teacher and workshop data.
+Repository contains an administrator's system to manipulate student, teacher and workshop data.
 
 ## How to run
 
-This above files have been tested using python 3.7.6. I would advise to use python 3.7.x+
+The files have been tested using python 3.7.6. I would advise to use python 3.7.x+
 
-Clone and run 'main.py'
+## Initialisation
+
+Clone the repository and run 'main.py' on the python terminal.
